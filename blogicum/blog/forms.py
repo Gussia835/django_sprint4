@@ -7,10 +7,9 @@ class CreatePostForm(forms.ModelForm):
     pub_date = forms.DateTimeField(
         initial=timezone.now,
         required=True,
+        input_formats=['%Y-%m-%dT%H:%M', '%Y-%m-%d %H:%M:%S', '%Y-%m-%d'],
         widget=forms.DateTimeInput(
-            attrs={
-                'type': 'datetime-local',
-            },
+            attrs={'type': 'datetime-local'},
             format='%Y-%m-%dT%H:%M',
         ),
     )

@@ -6,7 +6,7 @@ app_name = 'pages'
 
 class AboutPage(TemplateView):
     """Описание"""
-    template = 'pages/about.html'
+    template_name = 'pages/about.html'
 
 
 class RulesPage(TemplateView):

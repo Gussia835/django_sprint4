@@ -44,11 +44,11 @@ class PostCreateView(PostsEditMixin, LoginRequiredMixin, CreateView):
     model = Post
     form_class = CreatePostForm
     template_name = 'blog/create.html'
-
+    queryset = Post.objects.all() 
+    
     def form_valid(self, form):
         form.instance.author = self.request.user
-        response = super().form_valid(form)
-        return response
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('blog:profile', kwargs={'username': self.request.user.username})
