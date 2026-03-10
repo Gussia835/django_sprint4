@@ -15,7 +15,7 @@ urlpatterns = [
     
     path('auth/registration/', CreateUser.as_view(), name='registration'),
     
-    path('profile/edit/', UpdateProfile.as_view(), name='edit_profile'),
+    path('account/edit/', UpdateProfile.as_view(), name='edit_profile'),
     
     path('users/', include('users.urls', namespace='users')),
     path('pages/', include('pages.urls', namespace='pages')),
