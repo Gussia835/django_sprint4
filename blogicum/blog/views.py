@@ -60,16 +60,19 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
     template_name = 'blog/detail.html'
 
     def dispatch(self, request, *args, **kwargs):
-        self.post = get_object_or_404(Post, pk=self.kwargs['pk'])
+        self.target_post = get_object_or_404(Post, pk=self.kwargs['pk'])
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        form.instance.post = self.post
+        form.instance.post = self.target_post
         form.instance.author = self.request.user
         return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('blog:post_detail', kwargs={'pk': self.kwargs['pk']})
+
+    def form_invalid(self):
+        return redirect(self.get_success_url())
 
 
 class CommentDeleteView(CommentEditMixin, LoginRequiredMixin, DeleteView):

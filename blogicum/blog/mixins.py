@@ -1,9 +1,17 @@
 from .models import Comment, Post
-
+from django.utils import timezone
 
 class PostsQuerySetMixin:
     def get_queryset(self):
-        return Post.post_list
+        return Post.objects.select_related(
+            'category',
+            'author',
+            'location',
+        ).filter(
+            is_published=True,
+            category__is_published=True,
+            pub_date__lte=timezone.now(),
+        ).order_by('-pub_date')
 
 
 class PostsEditMixin:
