@@ -32,23 +32,22 @@ class PostUpdateView(PostsEditMixin, LoginRequiredMixin, UpdateView):
     model = Post
     form_class = CreatePostForm
     template_name = 'blog/create.html'
-    
+
     def dispatch(self, request, *args, **kwargs):
         post = get_object_or_404(Post, pk=self.kwargs['pk'])
         if self.request.user != post.author:
             return redirect('blog:post_detail', pk=self.kwargs['pk'])
         return super().dispatch(request, *args, **kwargs)
-    
+
     def get_success_url(self):
         return reverse('blog:post_detail', kwargs={'pk': self.kwargs['pk']})
 
 
-class PostCreateView(PostsEditMixin, LoginRequiredMixin, CreateView):
+class PostCreateView(PostsEditMixin, CreateView):
     model = Post
     form_class = CreatePostForm
     template_name = 'blog/create.html'
-    queryset = Post.objects.all() 
-    
+
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)

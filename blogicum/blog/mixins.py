@@ -1,6 +1,7 @@
 from .models import Comment, Post
 from django.utils import timezone
 
+
 class PostsQuerySetMixin:
     def get_queryset(self):
         return Post.objects.select_related(

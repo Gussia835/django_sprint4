@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-!oine0j@_-f_&9jap(0n))jdmy=v6j=1f(7vf8%38prfo4+*7k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -132,7 +135,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#CSRF_FAILURE_VIEW = "pages.views.csrf_failure"
+# CSRF_FAILURE_VIEW = "pages.views.csrf_failure"
 
 AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = 'blog:index'
@@ -150,4 +153,4 @@ MEDIA_URL = '/media/'
 # EMAIL_USE_TLS = True
 # EMAIL_HOST_USER
 # EMAIL_HOST_PASSWORD
-# DEFAULT_FROM_EMAIL 
+# DEFAULT_FROM_EMAIL

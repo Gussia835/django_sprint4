@@ -81,18 +81,18 @@ class Category(BaseModel):
 class Post(BaseModel):
     title = models.CharField(max_length=256,
                              verbose_name='Заголовок')
-    
+
     text = models.TextField(verbose_name='Текст')
 
     pub_date = models.DateTimeField(verbose_name='Дата и время публикации',
                                     help_text='Если установить дату и время в '
                                     'будущем — можно делать '
                                     'отложенные публикации.')
-    
+
     image = models.ImageField(verbose_name='Изображение',
                               upload_to='posts_image',
                               blank=True)
-    
+
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
                                verbose_name='Автор публикации',
